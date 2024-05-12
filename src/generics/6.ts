@@ -2,6 +2,7 @@
 включаючи поле errors. 
 Ви хочете створити новий тип Params, 
 який включає всі поля з Form, крім errors. */
+
 type Errors = {
   email?: string[];
   firstName?: string[];
@@ -19,4 +20,4 @@ type Form = {
 
 // Реалізуйте Params так,
 // щоб унеможливити поле 'errors' з типу Form
-type Params = Form;
+type Params = Omit<Form, "errors">;

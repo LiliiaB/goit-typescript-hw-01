@@ -6,6 +6,7 @@
 
 Використовуючи утиліту Partial та generics, 
 виправте тип параметра функції так, щоб уникнути помилок типізації. */
+
 type User = {
   name: string;
   surname: string;
@@ -13,11 +14,18 @@ type User = {
   password: string;
 };
 
-function createOrUpdateUser(initialValues: User) {
-  // Оновлення користувача
+function createOrUpdateUser(initialValues: Partial<User>): User {
+  const defaultUser: User = {
+    name: "",
+    surname: "",
+    email: "",
+    password: "",
+  };
+
+  return { ...defaultUser, ...initialValues };
 }
 
-createOrUpdateUser({
+const newUser = createOrUpdateUser({
   email: "user@mail.com",
   password: "password123",
 });
